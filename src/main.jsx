@@ -457,7 +457,7 @@ function ProductEditor({
                 onChange={(event) => onUpdateRow(product.id, row.id, { number: event.target.value })}
               />
               <input
-                placeholder="B, P..."
+                placeholder="Notas"
                 value={row.notes}
                 onChange={(event) => onUpdateRow(product.id, row.id, { notes: event.target.value })}
               />
