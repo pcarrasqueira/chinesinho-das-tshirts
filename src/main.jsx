@@ -6,6 +6,7 @@ import {
   Clipboard,
   ChevronDown,
   Download,
+  Eye,
   FileImage,
   Link as LinkIcon,
   Plus,
@@ -94,7 +95,8 @@ function proxiedImageUrl(url) {
 function App() {
   const [order, setOrder] = useState(loadOrder);
   const [isExporting, setIsExporting] = useState(false);
-  const previewRef = useRef(null);
+  const [showPreview, setShowPreview] = useState(false);
+  const exportRef = useRef(null);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(order));
@@ -221,12 +223,12 @@ function App() {
   };
 
   const downloadPdf = async () => {
-    if (!previewRef.current) return;
+    if (!exportRef.current) return;
     setIsExporting(true);
     await new Promise((resolve) => setTimeout(resolve, 80));
 
     try {
-      const canvas = await html2canvas(previewRef.current, {
+      const canvas = await html2canvas(exportRef.current, {
         backgroundColor: "#ffffff",
         scale: 2,
         useCORS: true,
@@ -280,7 +282,7 @@ function App() {
   };
 
   return (
-    <main className="app-shell">
+    <main className={`app-shell ${showPreview ? "preview-open" : ""}`}>
       <section className="workspace">
         <header className="topbar">
           <div>
@@ -291,6 +293,10 @@ function App() {
             <p>{totals.quantity} unidades em {totals.lines} linhas</p>
           </div>
           <div className="topbar-actions">
+            <button onClick={() => setShowPreview((current) => !current)}>
+              <Eye size={18} />
+              Preview
+            </button>
             <button onClick={resetOrder}>
               <RotateCcw size={18} />
               Nova Folha
@@ -343,13 +349,19 @@ function App() {
         </section>
       </section>
 
-      <aside className="preview-pane">
-        <div className="preview-toolbar">
-          <h2>Preview</h2>
-          <span>A4</span>
-        </div>
-        <OrderPreview ref={previewRef} order={order} />
-      </aside>
+      {showPreview && (
+        <aside className="preview-pane">
+          <div className="preview-toolbar">
+            <h2>Preview</h2>
+            <span>A4</span>
+          </div>
+          <OrderPreview order={order} />
+        </aside>
+      )}
+
+      <div className="pdf-export-source" aria-hidden="true">
+        <OrderPreview ref={exportRef} order={order} />
+      </div>
     </main>
   );
 }

@@ -71,9 +71,13 @@ label {
 }
 
 .app-shell {
+  display: block;
+  min-height: 100vh;
+}
+
+.app-shell.preview-open {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(390px, 46vw);
-  min-height: 100vh;
 }
 
 .workspace {
@@ -361,6 +365,13 @@ h2 {
   padding: 28px;
 }
 
+.pdf-export-source {
+  left: -10000px;
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+}
+
 .preview-toolbar {
   margin-bottom: 14px;
 }
@@ -482,7 +493,7 @@ h2 {
 }
 
 @media (max-width: 1180px) {
-  .app-shell {
+  .app-shell.preview-open {
     grid-template-columns: 1fr;
   }
 
