@@ -375,6 +375,43 @@ h2 {
   margin-top: 6px;
 }
 
+.add-product-line {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: #1e7f68;
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  margin: 2px 0 16px;
+  min-height: 44px;
+  padding: 0;
+  width: 100%;
+}
+
+.add-product-line::before,
+.add-product-line::after {
+  background: #cdd5dd;
+  content: "";
+  flex: 1;
+  height: 1px;
+}
+
+.add-product-line span {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #cdd5dd;
+  border-radius: 999px;
+  display: inline-flex;
+  height: 38px;
+  justify-content: center;
+  width: 38px;
+}
+
+.add-product-line:hover span {
+  border-color: #1e7f68;
+}
+
 .preview-pane {
   background: #dfe5e9;
   border-left: 1px solid #cbd4db;

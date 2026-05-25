@@ -364,6 +364,10 @@ function App() {
           <div className="section-heading">
             <h2>Tshirts</h2>
             <div className="section-actions">
+              <button onClick={addProduct}>
+                <Plus size={17} />
+                Adicionar tshirt
+              </button>
               <button onClick={() => setShowPreview((current) => !current)}>
                 <Eye size={18} />
                 Pré-visualizar
@@ -371,10 +375,6 @@ function App() {
               <button className="primary-button" onClick={downloadPdf} disabled={isExporting}>
                 <Download size={18} />
                 {isExporting ? "A gerar..." : "Download PDF"}
-              </button>
-              <button onClick={addProduct}>
-                <Plus size={17} />
-                Adicionar tshirt
               </button>
             </div>
           </div>
@@ -393,6 +393,12 @@ function App() {
               onImageUrl={handleImageUrl}
             />
           ))}
+
+          <button className="add-product-line" onClick={addProduct} aria-label="Adicionar outra tshirt">
+            <span>
+              <Plus size={20} />
+            </span>
+          </button>
 
           <div className="panel notes-panel">
             <label>
