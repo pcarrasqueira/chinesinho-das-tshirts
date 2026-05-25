@@ -249,6 +249,13 @@ h2 {
   margin-bottom: 14px;
 }
 
+.section-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
 .product-editor {
   margin-bottom: 16px;
   overflow: hidden;
@@ -518,6 +525,16 @@ h2 {
   }
 
   .topbar-actions {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .section-actions {
     justify-content: flex-start;
     width: 100%;
   }

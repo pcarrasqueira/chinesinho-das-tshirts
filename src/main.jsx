@@ -335,11 +335,11 @@ function App() {
           <div className="topbar-actions">
             <button onClick={saveSession}>
               <Save size={18} />
-              Save Session
+              Guardar Sessão
             </button>
             <button onClick={() => importInputRef.current?.click()}>
               <Upload size={18} />
-              Import Session
+              Importar Sessão
             </button>
             <input
               ref={importInputRef}
@@ -348,10 +348,6 @@ function App() {
               accept="application/json,.json"
               onChange={(event) => importSession(event.target.files?.[0])}
             />
-            <button onClick={() => setShowPreview((current) => !current)}>
-              <Eye size={18} />
-              Preview
-            </button>
             <button onClick={resetOrder}>
               <RotateCcw size={18} />
               Nova Folha
@@ -370,10 +366,16 @@ function App() {
         <section className="products">
           <div className="section-heading">
             <h2>Tshirts</h2>
-            <button onClick={addProduct}>
-              <Plus size={17} />
-              Adicionar tshirt
-            </button>
+            <div className="section-actions">
+              <button onClick={() => setShowPreview((current) => !current)}>
+                <Eye size={18} />
+                Pré-visualizar
+              </button>
+              <button onClick={addProduct}>
+                <Plus size={17} />
+                Adicionar tshirt
+              </button>
+            </div>
           </div>
 
           {order.products.map((product, index) => (
