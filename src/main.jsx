@@ -549,9 +549,6 @@ const OrderPreview = React.forwardRef(function OrderPreview({ order }, ref) {
     <div className="pdf-sheet" ref={ref}>
       <header className="pdf-title">
         <h2>Tshirts</h2>
-        <div>
-          <span>{new Date().toLocaleDateString("pt-PT")}</span>
-        </div>
       </header>
 
       <table className="order-table">
