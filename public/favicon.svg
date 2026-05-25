@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Chinesinho das Tshirts">
+  <rect width="64" height="64" rx="14" fill="#1e7f68"/>
+  <path
+    d="M20 15 29 10h6l9 5 9 7-7 10-5-3v22H23V29l-5 3-7-10 9-7Z"
+    fill="#ffffff"
+    stroke="#113f35"
+    stroke-linejoin="round"
+    stroke-width="3"
+  />
+  <path d="M27 12c1 4 9 4 10 0" fill="none" stroke="#113f35" stroke-linecap="round" stroke-width="3"/>
+</svg>
