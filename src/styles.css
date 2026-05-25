@@ -115,6 +115,7 @@ label {
   align-items: center;
   display: flex;
   gap: 12px;
+  min-width: 0;
 }
 
 h1,
@@ -126,6 +127,7 @@ p {
 h1 {
   font-size: 30px;
   letter-spacing: 0;
+  white-space: nowrap;
 }
 
 h2 {

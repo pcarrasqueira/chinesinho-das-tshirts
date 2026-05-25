@@ -353,10 +353,6 @@ function App() {
               <RotateCcw size={18} />
               Nova Folha
             </button>
-            <button className="primary-button" onClick={downloadPdf} disabled={isExporting}>
-              <Download size={18} />
-              {isExporting ? "A gerar..." : "Download PDF"}
-            </button>
           </div>
         </header>
 
@@ -371,6 +367,10 @@ function App() {
               <button onClick={() => setShowPreview((current) => !current)}>
                 <Eye size={18} />
                 Pré-visualizar
+              </button>
+              <button className="primary-button" onClick={downloadPdf} disabled={isExporting}>
+                <Download size={18} />
+                {isExporting ? "A gerar..." : "Download PDF"}
               </button>
               <button onClick={addProduct}>
                 <Plus size={17} />
