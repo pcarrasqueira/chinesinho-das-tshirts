@@ -308,6 +308,21 @@ h2 {
   width: 100%;
 }
 
+.paste-tip {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  padding: 18px;
+  text-align: center;
+}
+
+.paste-tip span {
+  color: #52606c;
+  font-size: 13px;
+  font-weight: 800;
+}
+
 .file-button {
   align-items: center;
   background: #ffffff;

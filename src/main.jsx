@@ -465,7 +465,14 @@ function ProductEditor({
       <div className="product-body">
         <div className="image-input">
           <div className="image-frame">
-            {product.image ? <img crossOrigin="anonymous" src={product.image} alt="" /> : <FileImage size={42} />}
+            {product.image ? (
+              <img crossOrigin="anonymous" src={product.image} alt="" />
+            ) : (
+              <div className="paste-tip">
+                <FileImage size={42} />
+                <span>CTRL+V ou Command+V</span>
+              </div>
+            )}
           </div>
           <label className="file-button">
             <Clipboard size={17} />
