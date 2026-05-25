@@ -5,6 +5,7 @@
   background: #eef1f3;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
+  --content-width: 1120px;
 }
 
 * {
@@ -77,11 +78,15 @@ label {
 
 .app-shell.preview-open {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(390px, 46vw);
+  grid-template-columns: minmax(0, 1120px) minmax(390px, 42vw);
+  justify-content: center;
 }
 
 .workspace {
+  margin: 0 auto;
+  max-width: var(--content-width);
   padding: 28px;
+  width: 100%;
 }
 
 .topbar,
