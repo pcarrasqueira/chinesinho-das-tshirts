@@ -72,9 +72,23 @@ function normalizeOrder(savedOrder) {
     products: (savedOrder.products?.length ? savedOrder.products : [emptyProduct()]).map((product) => ({
       ...product,
       label: product.label === "Tshirt" || product.label === "Arsenal 25/26" ? "" : product.label || "",
+      image: product.imageUrl ? proxiedImageUrl(product.imageUrl) : product.image || "",
       rows: product.rows?.length ? product.rows : [emptyRow()],
     })),
   };
+}
+
+function proxiedImageUrl(url) {
+  const trimmed = url.trim();
+  if (!trimmed) return "";
+
+  try {
+    const parsed = new URL(trimmed);
+    if (!["http:", "https:"].includes(parsed.protocol)) return "";
+    return `/api/image-proxy?url=${encodeURIComponent(parsed.toString())}`;
+  } catch {
+    return "";
+  }
 }
 
 function App() {
@@ -203,7 +217,7 @@ function App() {
   };
 
   const handleImageUrl = (productId, value) => {
-    updateProduct(productId, { imageUrl: value, image: value });
+    updateProduct(productId, { imageUrl: value, image: proxiedImageUrl(value) });
   };
 
   const downloadPdf = async () => {
@@ -320,7 +334,7 @@ function App() {
             <label>
               Notas gerais
               <textarea
-                placeholder="Ex: confirmar badges, versão jogador, entrega..."
+                placeholder="Notas"
                 value={order.orderNotes}
                 onChange={(event) => updateOrder("orderNotes", event.target.value)}
               />
