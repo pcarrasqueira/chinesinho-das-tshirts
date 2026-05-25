@@ -393,6 +393,12 @@ h2 {
   font-weight: 800;
 }
 
+.preview-actions {
+  align-items: center;
+  display: flex;
+  gap: 10px;
+}
+
 .pdf-sheet {
   background: #ffffff;
   box-shadow: 0 20px 60px rgba(20, 36, 47, 0.16);

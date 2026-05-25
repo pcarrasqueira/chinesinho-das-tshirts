@@ -5,6 +5,7 @@ import jsPDF from "jspdf";
 import {
   Clipboard,
   ChevronDown,
+  X,
   Download,
   Eye,
   FileImage,
@@ -410,7 +411,12 @@ function App() {
         <aside className="preview-pane">
           <div className="preview-toolbar">
             <h2>Preview</h2>
-            <span>A4</span>
+            <div className="preview-actions">
+              <span>A4</span>
+              <button className="icon-button" onClick={() => setShowPreview(false)} title="Fechar preview">
+                <X size={18} />
+              </button>
+            </div>
           </div>
           <OrderPreview order={order} />
         </aside>
