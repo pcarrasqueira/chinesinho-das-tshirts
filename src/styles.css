@@ -102,6 +102,10 @@ label {
   justify-content: flex-end;
 }
 
+.session-file-input {
+  display: none;
+}
+
 .brand {
   align-items: center;
   display: flex;

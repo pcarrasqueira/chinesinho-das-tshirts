@@ -11,8 +11,10 @@ import {
   Link as LinkIcon,
   Plus,
   RotateCcw,
+  Save,
   Shirt,
   Trash2,
+  Upload,
 } from "lucide-react";
 import "./styles.css";
 
@@ -97,6 +99,7 @@ function App() {
   const [isExporting, setIsExporting] = useState(false);
   const [showPreview, setShowPreview] = useState(false);
   const exportRef = useRef(null);
+  const importInputRef = useRef(null);
 
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(order));
@@ -222,6 +225,43 @@ function App() {
     updateProduct(productId, { imageUrl: value, image: proxiedImageUrl(value) });
   };
 
+  const saveSession = () => {
+    const session = {
+      version: 1,
+      savedAt: new Date().toISOString(),
+      order,
+    };
+    const blob = new Blob([JSON.stringify(session, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `tshirts-session-${new Date().toISOString().slice(0, 10)}.json`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    URL.revokeObjectURL(url);
+  };
+
+  const importSession = (file) => {
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const parsed = JSON.parse(reader.result);
+        const importedOrder = normalizeOrder(parsed.order || parsed);
+        setOrder(importedOrder);
+      } catch {
+        window.alert("Não consegui importar a sessão. Confirma que o ficheiro é um JSON exportado pela app.");
+      } finally {
+        if (importInputRef.current) {
+          importInputRef.current.value = "";
+        }
+      }
+    };
+    reader.readAsText(file);
+  };
+
   const downloadPdf = async () => {
     if (!exportRef.current) return;
     setIsExporting(true);
@@ -293,6 +333,21 @@ function App() {
             <p>{totals.quantity} unidades em {totals.lines} linhas</p>
           </div>
           <div className="topbar-actions">
+            <button onClick={saveSession}>
+              <Save size={18} />
+              Save Session
+            </button>
+            <button onClick={() => importInputRef.current?.click()}>
+              <Upload size={18} />
+              Import Session
+            </button>
+            <input
+              ref={importInputRef}
+              className="session-file-input"
+              type="file"
+              accept="application/json,.json"
+              onChange={(event) => importSession(event.target.files?.[0])}
+            />
             <button onClick={() => setShowPreview((current) => !current)}>
               <Eye size={18} />
               Preview
